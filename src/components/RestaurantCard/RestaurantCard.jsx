@@ -1,9 +1,11 @@
+import { REST_CARD_URL } from "../../utils/constants";
+
 export function RestaurantCard(props) {
   return (
     <div className="res-card">
       <h3>{props.resName}</h3>
       <img
-        src="https://www.licious.in/blog/wp-content/uploads/2020/10/butter-chicken--750x750.jpg"
+        src={REST_CARD_URL} 
         alt=""
       />
       <h4>{props.cuisine}</h4>

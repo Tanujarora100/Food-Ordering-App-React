@@ -1,6 +1,6 @@
-import { BodyLayout } from "./Body";
-import { Header } from "./Header";
-import "./Header.css";
+import { BodyLayout } from "./Body/Body";
+import { Header } from "./Header/Header";
+import "./Header/Header.css";
 
 export function AppLayout() {
   return (

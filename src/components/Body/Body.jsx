@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { RestaurantCard } from "./RestaurantCard";
+import { RestaurantCard } from "../RestaurantCard/RestaurantCard";
 import axios from "axios";
 
 export function BodyLayout() {
@@ -23,7 +23,17 @@ export function BodyLayout() {
 
   return (
     <div className="body">
-      <div className="search">Search</div>
+      {/* <div className="search">Search</div> */}
+      <div className>
+        <button
+          className="filter-button"
+          onClick={() => {
+            console.log("Top rated Button clicked");
+          }}
+        >
+          Top Rated Restaurant
+        </button>
+      </div>
       <div className="res-container">
         {mealData.map((meal) => (
           <RestaurantCard
