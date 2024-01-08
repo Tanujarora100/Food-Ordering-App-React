@@ -1,10 +1,13 @@
 import { useState } from "react";
-export const SearchBar = () => {
+export const SearchBar = ({ restaurantsData, setRestaurantsData }) => {
     const [searchTerm, setSearchTerm] = useState('');
 
     function handleSearchItem(e) {
         setSearchTerm(e.target.value);
-
+        const filteredRestaurants = restaurantsData.filter((rest) => {
+            return rest.strMeal.includes(e.target.value);
+        });
+        setRestaurantsData(filteredRestaurants);
     }
 
     function searchItem() {
@@ -17,7 +20,7 @@ export const SearchBar = () => {
             <input type='text' placeholder="Type to search" value={searchTerm}
                 onChange={handleSearchItem}>
             </input>
-            <button onClick={handleSearchItem}>Search Button</button>
+            <button onClick={searchItem}>Search Button</button>
         </div>
     )
 };
