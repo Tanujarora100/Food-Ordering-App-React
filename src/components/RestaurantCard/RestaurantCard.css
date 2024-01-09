@@ -2,6 +2,7 @@
     display: flex;
     flex-wrap:wrap;
     padding: 50px;
+    word-spacing: 2px;;
 }
 .res-card:hover{
     border:3px solid black;
@@ -9,7 +10,7 @@
     transition: ease-in 5ms;
 }
 .res-card>img{
-    width: 80%;
+    width: 70%;
     margin:10px 10px;
    
 }

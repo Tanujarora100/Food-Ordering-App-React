@@ -1,0 +1,10 @@
+.delievery-button {
+    padding: 5px;
+    height: auto;
+    margin: 0px 0px;
+    background-color: lightblue;
+}
+
+.delievery-button:hover {
+    background-color: lightblue;
+}

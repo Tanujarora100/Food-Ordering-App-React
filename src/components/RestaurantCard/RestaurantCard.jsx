@@ -10,7 +10,7 @@ import "./RestaurantCard.css";
         alt=""
       />
       <h4>Cuisine:{props.cuisines}</h4>
-      <h4>DelieveryTime:{props.deliveryTime}</h4>
+      <h4>maxDeliveryTime:{props.maxDeliveryTime}</h4>
       <h4>Area:{props.area}</h4>
     </div>
   );

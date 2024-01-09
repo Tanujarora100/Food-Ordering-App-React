@@ -1,43 +1,18 @@
-import { restaurantList } from "../../utils/constants";
-import { RestaurantCard } from "../RestaurantCard/RestaurantCard";
-import { useState } from "react";
-
+import { SearchBar } from "../SearchBar/SearchBar";
+import {DeliveryButton} from "../FastDelieveryButton/FastDelieveryButton"
 
 //filter the restaurants according to the delievery time
 
-function filterAccordingToRestaurantName(searchedText, restaurants) {
-  if (searchedText.trim() !== '') {
-    const lowercasedSearchedText = searchedText.toLowerCase();
-    return restaurants.filter(restaurant => restaurant.data.name.toLowerCase().includes(lowercasedSearchedText));
 
-  }
-  else{
-    return restaurantList;
-  }
-}
 export const Body = () => {
-  const [restaurants, setRestaurants] = useState(restaurantList);
-  const [searchText, setSearchText] = useState('')
-  const renderRestaurants = () => {
-    return restaurants.map((restaurant) => (
-      <RestaurantCard key={restaurant.data.id} {...restaurant.data} />
-    ));
-  };
 
   return (
-    <div className="body">
-      <div>
-        <input type="text" placeholder="Search Restaurant Name"
-          onChange={(e) => setSearchText(e.target.value)}>
-        </input>
-        <button onClick={() => {
-          const filteredRest = filterAccordingToRestaurantName(searchText, restaurants);
-          setRestaurants(filteredRest);
-        }}>Click To Search</button>
-      </div>
-      <div className="res-container">
-        {renderRestaurants()}
+    <div>
+      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <SearchBar></SearchBar>
+        <DeliveryButton></DeliveryButton>
       </div>
     </div>
+
   );
 };
