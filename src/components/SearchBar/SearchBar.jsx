@@ -1,38 +1,41 @@
-import { RestaurantCard } from "../RestaurantCard/RestaurantCard";
-import { useState } from "react";
-import { restaurantList } from "../../utils/constants";
-function filterAccordingToRestaurantName(searchedText, restaurants) {
-    if (searchedText.trim() !== '') {
-        const lowercasedSearchedText = searchedText.toLowerCase();
-        return restaurants.filter(restaurant => restaurant.data.name.toLowerCase().includes(lowercasedSearchedText));
-    }
+import axios from "axios";
+import { useState, useEffect } from "react";
+import { ProductCard } from "../ProductCard/ProductCard";
+import { PRODUCT_API_LOADER } from "../../utils/constants";
+import { ShimmerProductCard } from "../ShimmerCard/ShimmerCard";
+import ContainedButtons from "../SearchButton/SearchButton";
 
-    return restaurants;
-}
 export const SearchBar = () => {
-    const [restaurants, setRestaurants] = useState(restaurantList);
-    const [searchText, setSearchText] = useState('')
-    const renderRestaurants = () => {
-        return restaurants.map((restaurant) => (
-            <RestaurantCard key={restaurant.data.id} {...restaurant.data} />
-        ));
+    const [products, setProducts] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+
+    const getProducts = async () => {
+        try {
+            const response = await axios.get(PRODUCT_API_LOADER);
+            setProducts(response.data);
+            setIsLoading(false);
+        } catch (err) {
+            console.log("Error during fetching:", err);
+        }
     };
 
-    return (
-        <div className="body">
-            <div>
-                <input type="text" placeholder="Search Restaurant Name"
-                    onChange={(e) => setSearchText(e.target.value)}>
-                </input>
-                <button onClick={() => {
-                    const filteredRest = filterAccordingToRestaurantName(searchText, restaurants);
-                    setRestaurants(filteredRest);
-                }}>Click To Search</button>
-            </div>
+    useEffect(() => {
+        getProducts();
+    }, []);
 
-            <div className="res-container">
-                {renderRestaurants()}
+    return (
+        <>
+            <input type="text" placeholder="Search" />
+            <div className="product-card-container">
+                {isLoading ? (
+                    <ShimmerProductCard></ShimmerProductCard>
+                ) : (
+                    products.map((product) => (
+                        <ProductCard key={product.id} {...product} />
+                    ))
+                )}
             </div>
-        </div>
+            <ContainedButtons>Click to Search</ContainedButtons>
+        </>
     );
-}
+};

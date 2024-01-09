@@ -13,7 +13,7 @@ export const DeliveryButton = () => {
 
     const renderRestaurants = () => {
         return restaurants.map((restaurant) => (
-            <RestaurantCard key={restaurant.data.id} {...restaurant.data} />
+            <RestaurantCard key={restaurant.id} {...restaurant.data} />
         ));
     };
 
