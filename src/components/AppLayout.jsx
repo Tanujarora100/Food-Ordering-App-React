@@ -1,4 +1,4 @@
-import { Body } from "./Body/Body";
+import { Body } from "./Body";
 // import { Header } from "./Header/Header";
 import ResponsiveAppBar from "./NavBar";
 import "./Header/Header.css";
