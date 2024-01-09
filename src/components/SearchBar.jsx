@@ -31,12 +31,12 @@ export const SearchBar = ({ restList }) => {
                 </button>
             </div>
             <div className="restaurant-list">
-        {restaurants.map((restaurant) => {
-          return (
-            <RestaurantCard key={restaurant.data.id} {...restaurant.data} />
-          );
-        })}
-      </div>
+                {restaurants.map((restaurant) => {
+                    return (
+                        <RestaurantCard key={restaurant.data.id} {...restaurant.data} />
+                    );
+                })}
+            </div>
         </>
     );
 };
