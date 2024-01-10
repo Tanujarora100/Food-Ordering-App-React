@@ -1,7 +1,7 @@
 
 import RestaurantCard from "./RestaurantCard";
 import { useState, useEffect } from "react";
-
+import ShimmerCard from "./ShimmerCard";
 export const SearchBar = ({ restList }) => {
     const [searchText, setSearchText] = useState("");
     const [restaurants, setRestaurants] = useState(restList);
@@ -28,8 +28,8 @@ export const SearchBar = ({ restList }) => {
     }, [restList])
 
 
-
-    return (
+    console.log(restaurants);
+    return restaurants.length === 0 ? <ShimmerCard /> : (
         <>
             <div className="search-container">
                 <input
@@ -44,7 +44,7 @@ export const SearchBar = ({ restList }) => {
                 </button>
 
             </div>
-            <div className="restaurant-list">
+            <div className="restaurant-list" >
                 {restaurants.map((restaurant) => {
                     return (
                         <RestaurantCard key={restaurant.data.id} {...restaurant.data} />

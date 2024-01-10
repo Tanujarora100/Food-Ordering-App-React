@@ -1,21 +1,46 @@
-import { restaurantList } from "../utils/constants";
+
 
 import { SearchBar } from "./SearchBar";
-function filterData(searchText, restaurants) {
-  const filterData = restaurants.filter((restaurant) =>
-    restaurant?.data?.name.toLowerCase().includes(searchText.toLowerCase())
-  );
-  return filterData;
-}
+import axios from "axios";
+import { MENU_API } from "../utils/constants";
+import { useEffect } from "react";
 
-// Body Component for body section: It contain all restaurant cards
-// We are mapping restaurantList array and passing JSON data to RestaurantCard component as props with unique key as index
+
 const Body = () => {
-  
+  let restaurantList = null;
+
+  useEffect(() => {
+    getRestaurants();
+  }, [])
+
+  const getRestaurants = async () => {
+    try {
+      const data = await axios.get(MENU_API);
+      // const jsonData = await data.json();
+      console.log('data:', data);
+
+      const checkData = async (jsonData) => {
+        for (let i = 0; i < jsonData.data.cards.length; i++) {
+          let checkData = json?.data?.cards[i]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+
+          if (checkData !== undefined)
+            return checkData;
+          // console.log(data);
+        }
+      }
+
+      const validatedData = await checkData(jsonData);
+      console.log('validatedData:', validatedData);
+      restaurantList = validatedData;
+    }
+    catch (err) {
+      console.error("Error while fetching the data");
+    }
+  }
   return (
     <>
-    <SearchBar restList={restaurantList}></SearchBar>
-      
+      <SearchBar restList={restaurantList}></SearchBar>
+
     </>
   );
 };
