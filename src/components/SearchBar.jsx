@@ -47,7 +47,7 @@ export const SearchBar = ({ restList }) => {
             <div className="restaurant-list" >
                 {restaurants.map((restaurant) => {
                     return (
-                        <RestaurantCard key={restaurant.data.id} {...restaurant.data} />
+                        <RestaurantCard key={restaurant.info?.id} {...restaurant?.info} />
                     );
                 })}
             </div>

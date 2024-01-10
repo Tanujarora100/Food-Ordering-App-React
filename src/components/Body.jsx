@@ -1,46 +1,46 @@
 
 
 import { SearchBar } from "./SearchBar";
-import axios from "axios";
+// import axios from "axios";
 import { MENU_API } from "../utils/constants";
-import { useEffect } from "react";
+import { useState,useEffect } from "react";
 
 
 const Body = () => {
-  let restaurantList = null;
+  const [restaurantList, setRestaurantList] = useState([]);
 
   useEffect(() => {
     getRestaurants();
   }, [])
 
-  const getRestaurants = async () => {
+  async function getRestaurants() {
+    // handle the error using try... catch
     try {
-      const data = await axios.get(MENU_API);
-      // const jsonData = await data.json();
-      console.log('data:', data);
+      const response = await fetch(MENU_API)
+      const json = await response.json();
+      async function checkJsonData(jsonData) {
+        for (let i = 0; i < jsonData?.data?.cards.length; i++) {
 
-      const checkData = async (jsonData) => {
-        for (let i = 0; i < jsonData.data.cards.length; i++) {
+          // initialize checkData for Swiggy Restaurant data
           let checkData = json?.data?.cards[i]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
-
-          if (checkData !== undefined)
+          if (checkData !== undefined) {
             return checkData;
-          // console.log(data);
+          }
         }
       }
+      const resData = await checkJsonData(json);
 
-      const validatedData = await checkData(jsonData);
-      console.log('validatedData:', validatedData);
-      restaurantList = validatedData;
-    }
-    catch (err) {
-      console.error("Error while fetching the data");
+      console.log(resData);
+      setRestaurantList(resData);
+
+    } catch (error) {
+      console.log(error);
     }
   }
+
   return (
     <>
       <SearchBar restList={restaurantList}></SearchBar>
-
     </>
   );
 };
