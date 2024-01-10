@@ -1,20 +1,33 @@
 
 import RestaurantCard from "./RestaurantCard";
-import { useState } from "react";
-function filterData(searchText, restaurants) {
-    const filterData = restaurants.filter((restaurant) =>
-        restaurant?.data?.name.toLowerCase().includes(searchText.toLowerCase())
-    );
-    return filterData;
-}
+import { useState, useEffect } from "react";
+
 export const SearchBar = ({ restList }) => {
     const [searchText, setSearchText] = useState("");
     const [restaurants, setRestaurants] = useState(restList);
+    //Maintain the original state here
+    const [originalRestaurants, setOriginalRestaurants] = useState(restList);
+    function handleSearch(searchText, restaurants) {
+        if (searchText.length === 0) {
+            setRestaurants(originalRestaurants);
+        }
 
-    const handleSearch = () => {
-        const data = filterData(searchText, restaurants);
-        setRestaurants(data);
-    };
+        else {
+            const filterData = restaurants.filter((restaurant) =>
+                restaurant?.data?.name.toLowerCase().includes(searchText.toLowerCase())
+            );
+            setRestaurants(filterData);
+        }
+
+    }
+
+    useEffect(() => {
+        setRestaurants(restList);
+        //As the restlist is a dependency here and in case it is changed, i need to change both the states here.
+        setOriginalRestaurants(restList);
+    }, [restList])
+
+
 
     return (
         <>
@@ -26,9 +39,10 @@ export const SearchBar = ({ restList }) => {
                     value={searchText}
                     onChange={(e) => setSearchText(e.target.value)}
                 />
-                <button className="search-btn" onClick={handleSearch}>
+                <button className="search-btn" onClick={() => handleSearch(searchText, restaurants)}>
                     Search
                 </button>
+
             </div>
             <div className="restaurant-list">
                 {restaurants.map((restaurant) => {
@@ -39,4 +53,4 @@ export const SearchBar = ({ restList }) => {
             </div>
         </>
     );
-};
+}; 
