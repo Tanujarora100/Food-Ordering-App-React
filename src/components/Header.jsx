@@ -1,6 +1,7 @@
 import FoodFireLogo from "../assets/FoodFireLogo.png";
 import "../styles/LoginButton.css"
 import { useState } from "react";
+import { Link } from "react-router-dom";
 // Title component for display logo
 const Title = () => (
   <a href="/">
@@ -21,10 +22,10 @@ const Header = () => {
     <div className="header">
       <Title />
       <div className="nav-items">
-        <ul>
-          <li>Home</li>
-          <li>About</li>
-          <li>Contact</li>
+        <ul style={{ cursor: 'pointer' }}>
+          <li><Link to="/">Home</Link></li>
+          <li ><Link to="/about">About</Link></li>
+          <li ><Link to="/contact">Contact</Link></li>
           <li>
             <i className="fa-solid fa-cart-shopping"></i>
           </li>
