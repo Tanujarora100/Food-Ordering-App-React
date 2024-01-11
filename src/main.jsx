@@ -7,7 +7,8 @@ import Error from './components/Error.jsx'
 import About from './components/About.jsx'
 import Contact from './components/Contact.jsx'
 import Body from './components/Body.jsx'
-
+import RestaurantMenu from './components/RestaurantMenu.jsx'
+import LoginForm from './components/LoginForm.jsx'
 const appRouter = createBrowserRouter([
   {
     path: "/",
@@ -26,6 +27,14 @@ const appRouter = createBrowserRouter([
         path: "/contact",
         element: <Contact></Contact>,
 
+      }
+      ,
+      {
+        path: "/restaurant/:id",
+        element: <RestaurantMenu></RestaurantMenu>
+      }, {
+        path: "/login",
+        element: <LoginForm></LoginForm>
       }
     ],
     errorElement: <Error></Error>

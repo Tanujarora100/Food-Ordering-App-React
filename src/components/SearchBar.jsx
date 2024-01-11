@@ -14,7 +14,7 @@ export const SearchBar = ({ restList }) => {
 
         else {
             const filterData = restaurants.filter((restaurant) =>
-                restaurant?.data?.name.toLowerCase().includes(searchText.toLowerCase())
+                restaurant?.info?.name.toLowerCase().includes(searchText.toLowerCase())
             );
             setRestaurants(filterData);
         }
@@ -31,7 +31,7 @@ export const SearchBar = ({ restList }) => {
     console.log(restaurants);
     return restaurants.length === 0 ? <ShimmerCard /> : (
         <>
-            <div className="search-container">
+            <div className="search-container" >
                 <input
                     type="text"
                     className="search-input"

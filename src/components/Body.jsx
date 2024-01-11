@@ -2,7 +2,7 @@
 
 import { SearchBar } from "./SearchBar";
 // import axios from "axios";
-import { MENU_API } from "../utils/constants";
+import { Restaurant_API } from "../utils/constants";
 import { useState,useEffect } from "react";
 
 
@@ -16,7 +16,7 @@ const Body = () => {
   async function getRestaurants() {
     // handle the error using try... catch
     try {
-      const response = await fetch(MENU_API)
+      const response = await fetch(Restaurant_API)
       const json = await response.json();
       async function checkJsonData(jsonData) {
         for (let i = 0; i < jsonData?.data?.cards.length; i++) {

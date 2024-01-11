@@ -2,6 +2,7 @@ import FoodFireLogo from "../assets/FoodFireLogo.png";
 import "../styles/LoginButton.css"
 import { useState } from "react";
 import { Link } from "react-router-dom";
+// import SignUpButton from "./SignUpButton";
 // Title component for display logo
 const Title = () => (
   <a href="/">
@@ -32,6 +33,9 @@ const Header = () => {
           <button className="login-button" onClick={() => alignButtonText()}>
             {buttonText}
           </button>
+          {/* <div>
+           <SignUpButton></SignUpButton>
+          </div> */}
         </ul>
       </div>
     </div>
