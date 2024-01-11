@@ -5,8 +5,8 @@ export const IMG_CDN_URL =
 
 
   export const MENU_API =
-  "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=28.5649034&lng=77.2403317&restaurantId=";
+  'https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=28.573120&lng=77.246231&restaurantId=';
 
 
-export const Restaurant_API = "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.5649034&lng=77.2403317&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING";
+export const Restaurant_API = "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.573120&lng=77.246231&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING";
 // RestaurantList is JSON Data for displaying cards
